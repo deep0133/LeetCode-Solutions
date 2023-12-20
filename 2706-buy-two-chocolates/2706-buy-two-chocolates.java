@@ -1,26 +1,17 @@
 class Solution {
-    
-    int findMin(int a[],int n){
-        int i = 0;
-        for(int j=0; j<a.length; j++){
-            if(a[i] > a[j]){
-                 i = j;
+    public int buyChoco(int[] prices, int money) {
+        int min1 = 101;
+        int min2 = 101;
+        
+        for (int i = 0; i < prices.length; i++){
+            if (prices[i] < min1) {
+                min2 = min1;
+                min1 = prices[i];
+            }
+            else if (prices[i] < min2) {
+                min2 = prices[i];
             }
         }
-        return i;
-    }
-    
-    public int buyChoco(int[] prices, int money) {
-        
-        int firstMin = findMin(prices,prices.length);
-        int rem = money - prices[firstMin];
-        prices[firstMin] = 101;
-        int secondMin = findMin(prices,prices.length);
-        
-        rem -= prices[secondMin];
-        
-        return rem >=0 ? rem:money;
-        
-        
+        return (min1 + min2 <= money) ? money - (min1 + min2) : money;
     }
 }
