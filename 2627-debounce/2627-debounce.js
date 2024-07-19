@@ -3,13 +3,16 @@
  * @param {number} t milliseconds
  * @return {Function}
  */
+
 var debounce = function(fn, t) {
-    let id;
+    
+    let id = null;
+    
     return function(...args) {
         if(id) clearTimeout(id)
-        id = setTimeout(()=>{fn(...args)},t);
-        
-        
+        id = setTimeout(()=>{
+            fn(...args);
+        },t)
     }
 };
 
